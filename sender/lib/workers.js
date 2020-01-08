@@ -48,7 +48,7 @@ workers.performFileSync = function(){
 workers.loop = function(){
   setInterval(function(){
     workers.performFileSync();
-  }, 1000 * 60 * 1);
+  }, config.refreshInterval);
 };
 workers.init = function(){
   console.log('\x1b[33m%s\x1b[0m','Proses sinkronisasi file: aktif.');
