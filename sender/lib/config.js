@@ -4,6 +4,7 @@ environments.staging = {
   'httpsPort' : 3001,
   'envName' : 'staging',
   'sqliteDBFile': 'data.db',
+  'dbFileDirectory' : 'db',
   'dataDirectory' : 'data',
   'defaultFileExtension' : '.txt',
   'endPointURL' : 'http://192.168.1.235:3030'
@@ -13,6 +14,7 @@ environments.production = {
   'httpsPort' : 5001,
   'envName' : 'production',
   'sqliteDBFile': 'data.db',
+  'dbFileDirectory' : 'db',
   'dataDirectory' : 'data',
   'defaultFileExtension' : '.txt',
   'endPointURL' : 'http://192.168.1.235:3030'
