@@ -5,13 +5,13 @@ var helpers = require('./helpers');
 var sqlite3 = require('sqlite3').verbose();
 var lib = {};
 lib.baseDir = path.join(__dirname,'/../'+config.dataDirectory+'/');
-lib.baseSQLiteDir = path.join(__dirname,'/../db/');
+lib.baseSQLiteDir = path.join(__dirname,'/../'+config.dbFileDirectory+'/');
 lib.dbFile = lib.baseSQLiteDir + config.sqliteDBFile;
 lib.sqliteconnect = new sqlite3.Database(lib.dbFile, sqlite3.OPEN_READWRITE, (err) => {
   if(err) throw err;
 });
 lib.read = function(dir,file,callback){
-  fs.readFile(lib.baseDir+dir+'/'+file+'.txt', 'utf8', function(err,data){
+  fs.readFile(lib.baseDir+dir+'/'+file+config.defaultFileExtension, 'utf8', function(err,data){
     if(!err && data){
       var parsedData = helpers.parseJsonToObject(data);
       callback(false,parsedData);
@@ -21,7 +21,7 @@ lib.read = function(dir,file,callback){
   });
 };
 lib.delete = function(dir,file,callback){
-  fs.unlink(lib.baseDir+dir+'/'+file+'.txt', function(err){
+  fs.unlink(lib.baseDir+dir+'/'+file+config.defaultFileExtension, function(err){
     callback(err);
   });
 };
@@ -30,7 +30,7 @@ lib.list = function(dir,callback){
     if(!err && data && data.length > 0){
       var trimmedFileNames = [];
       data.forEach(function(fileName){
-        trimmedFileNames.push(fileName.replace('.txt',''));
+        trimmedFileNames.push(fileName.replace(config.defaultFileExtension,''));
       });
       callback(false,trimmedFileNames);
     } else {
