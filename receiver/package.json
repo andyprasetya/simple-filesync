@@ -1,0 +1,14 @@
+{
+  "name": "filesync-receiver",
+  "version": "1.0.0",
+  "description": "A generic backend API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
+    "test": "./node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "formidable": "latest"
+  }
+}
